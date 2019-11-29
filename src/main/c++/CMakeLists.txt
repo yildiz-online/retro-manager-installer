@@ -11,3 +11,5 @@ file(
 )
 
 add_executable(retro-installer main.cpp)
+
+install(TARGETS DESTINATION ${CMAKE_INSTALL_PREFIX})
