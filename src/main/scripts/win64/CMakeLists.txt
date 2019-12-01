@@ -6,10 +6,10 @@ include_directories("${CMAKE_SOURCE_DIR}/libcurl/win64/include")
 file(
         GLOB_RECURSE
         source_files
-        ${CMAKE_SOURCE_DIR} ./*.cpp
-        ${CMAKE_SOURCE_DIR} ./*.c
-        ${CMAKE_SOURCE_DIR} ./*.hpp
-        ${CMAKE_SOURCE_DIR} ./*.h
+        ${CMAKE_SOURCE_DIR} ../../c++/*.cpp
+        ${CMAKE_SOURCE_DIR} ../../c++/*.c
+        ${CMAKE_SOURCE_DIR} ../../c++/*.hpp
+        ${CMAKE_SOURCE_DIR} ../../c++/*.h
 )
 
 add_executable(retro-installer main.cpp)
