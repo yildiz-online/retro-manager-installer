@@ -2,6 +2,8 @@
 #include <fstream>
 #include <string>
 
+bool isFileExists (const std::string& name);
+
 int main () {
     std::ofstream log;
     log.open("retro-manager.log", std::ios::out | std::ios::trunc );
