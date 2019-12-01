@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.7)
 project(retro-installer)
 
-include_directories("${CMAKE_SOURCE_DIR}/libcurl/win64/include")
+include_directories("${CMAKE_SOURCE_DIR}/curl/win64/include")
 
 file(
         GLOB_RECURSE
@@ -14,6 +14,6 @@ file(
 
 add_executable(retro-installer ../../c++/main.cpp)
 
-target_link_libraries(retro-installer ${CMAKE_SOURCE_DIR}/libcurl/win64/lib/libcurl.a)
+target_link_libraries(retro-installer ${CMAKE_SOURCE_DIR}/curl/win64/lib/libcurl.a)
 
 install(TARGETS DESTINATION ${CMAKE_INSTALL_PREFIX})
