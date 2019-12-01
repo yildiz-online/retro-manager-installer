@@ -17,5 +17,6 @@ file(
 
 add_executable(retro-installer ../../c++/main.cpp)
 
+target_link_libraries(retro-installer wsock32 ws2_32)
 target_link_libraries(retro-installer ${CMAKE_SOURCE_DIR}/curl/win64/lib/libcurl.a)
 
