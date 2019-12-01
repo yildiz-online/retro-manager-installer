@@ -6,7 +6,7 @@ cmake . \
 -DCMAKE_TOOLCHAIN_FILE=mingw-toolchain.cmake
 
 ls -l
-cd  curl
+cd  curl/win64
 ls -l
 cd ..
 
