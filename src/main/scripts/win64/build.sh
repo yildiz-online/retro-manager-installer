@@ -5,14 +5,7 @@ cmake . \
 -DCMAKE_INSTALL_PREFIX="../../../../target/classes/win64" \
 -DCMAKE_TOOLCHAIN_FILE=mingw-toolchain.cmake
 
-ls -l
-cd  curl/win64
-ls -l
-cd ..
-
-make install
+make
 r1=$?
-
-make clean
 
 exit ${r1}
