@@ -16,4 +16,3 @@ add_executable(retro-installer ../../c++/main.cpp)
 
 target_link_libraries(retro-installer ${CMAKE_SOURCE_DIR}/curl/win64/lib/libcurl.a)
 
-install(TARGETS DESTINATION ${CMAKE_INSTALL_PREFIX})

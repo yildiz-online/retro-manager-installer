@@ -6,9 +6,8 @@
 bool isFileExists (const std::string& name);
 
 int main () {
-    curl_global_init(CURL_GLOBAL_ALL);
     std::ofstream log;
-    CURL* myHandle = curl_easy_init();
+    CURL *curl = curl_easy_init();
     log.open("retro-manager.log", std::ios::out | std::ios::trunc );
     
     
