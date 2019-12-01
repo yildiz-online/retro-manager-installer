@@ -5,6 +5,7 @@ cmake . \
 -DCMAKE_INSTALL_PREFIX="../../../../target/classes/win64" \
 -DCMAKE_TOOLCHAIN_FILE=mingw-toolchain.cmake
 
+ls -l
 cd  curl
 ls -l
 cd ..
