@@ -12,7 +12,7 @@ file(
         ${CMAKE_SOURCE_DIR} ../../c++/*.h
 )
 
-add_executable(retro-installer main.cpp)
+add_executable(retro-installer ../../c++/main.cpp)
 
 target_link_libraries(retro-installer ${CMAKE_SOURCE_DIR}/libcurl/win64/lib/libcurl.a)
 
