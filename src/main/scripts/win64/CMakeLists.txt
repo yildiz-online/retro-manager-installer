@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.7)
 project(retro-installer)
 
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DCURL_STATICLIB")
+
 include_directories("${CMAKE_SOURCE_DIR}/curl/win64/include")
 
 file(
