@@ -17,12 +17,44 @@
     <version>2.2.5-SNAPSHOT</version>
   </parent>
 
-  <build>
+         
+ <build>
     <plugins>
       <plugin>
         <artifactId>exec-maven-plugin</artifactId>
         <groupId>org.codehaus.mojo</groupId>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>curl-unpack-win64</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>be.yildiz-games</groupId>
+                  <artifactId>component-native-curl</artifactId>
+                  <outputDirectory>src/main/scripts/win64/curl</outputDirectory>
+                  <includes>win64/**/*.*</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>be.yildiz-games</groupId>
+      <artifactId>component-native-curl</artifactId>
+      <version>7.67.0.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
 </project>
