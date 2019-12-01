@@ -1,16 +1,19 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <curl/curl.h>
 
 bool isFileExists (const std::string& name);
 
 int main () {
+    curl_global_init(CURL_GLOBAL_ALL);
     std::ofstream log;
+    CURL* myHandle = curl_easy_init();
     log.open("retro-manager.log", std::ios::out | std::ios::trunc );
     
     
     log << "Checking java availability" << std::endl;
-    if(!isFileExists("java\bin\java.exe")) {
+    if(!isFileExists("java/bin/java.exe")) {
         log << "Java not found, dowloading it..." << std::endl;
         //    @curl.exe -s -Lo java.tar.gz https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz
         log << "Java download complete." << std::endl;
