@@ -22,5 +22,4 @@ target_link_libraries(retro-installer ${CMAKE_SOURCE_DIR}/curl/win64/lib/libcurl
 target_link_libraries(retro-installer wsock32)
 target_link_libraries(retro-installer ws2_32)
 target_link_libraries(retro-installer pthread)
-target_link_libraries(retro-installer ldap)
 
