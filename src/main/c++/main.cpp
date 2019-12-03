@@ -14,6 +14,7 @@ int main () {
     log << "Checking java availability" << std::endl;
     if(!isFileExists("java/bin/java.exe")) {
         log << "Java not found, dowloading it..." << std::endl;
+        curl_easy_setopt(curl, CURLOPT_URL, "java.tar.gz https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz");
         //    @curl.exe -s -Lo java.tar.gz https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz
         log << "Java download complete." << std::endl;
         log << "Unpacking java.tar.gz..." << std::endl;
