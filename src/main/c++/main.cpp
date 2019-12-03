@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <curl/curl.h>
+#include <stdio.h>
 
 bool isFileExists (const std::string& name);
 
@@ -17,7 +18,7 @@ int main () {
     log << "Checking java availability" << std::endl;
     if(!isFileExists("java/bin/java.exe")) {
         log << "Java not found, dowloading it..." << std::endl;
-      //  FILE *javaFile;
+        FILE *javaFile;
        // curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
        // curl_easy_setopt(curl, CURLOPT_URL, "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz");
       //  javaFile = fopen("java.tar.gz", "wb");
