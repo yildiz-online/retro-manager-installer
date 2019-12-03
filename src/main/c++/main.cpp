@@ -23,7 +23,7 @@ int main () {
         curl_easy_setopt(curl, CURLOPT_URL, "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz");
         javaFile = fopen("java.tar.gz", "wb");
         if(javaFile) {
-            curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, javaFile);
+            curl_easy_setopt(curl, CURLOPT_WRITEDATA, javaFile);
             curl_easy_perform(curl);
             fclose(javaFile);
         }
