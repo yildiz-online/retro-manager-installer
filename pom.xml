@@ -45,6 +45,23 @@
               </artifactItems>
             </configuration>
           </execution>
+          <execution>
+            <id>libarchive-unpack-win64</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>be.yildiz-games</groupId>
+                  <artifactId>component-native-libarchive</artifactId>
+                  <outputDirectory>src/main/scripts/win64/libarchive</outputDirectory>
+                  <includes>win64/**/*.*</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
     </plugins>
@@ -53,8 +70,8 @@
   <dependencies>
     <dependency>
       <groupId>be.yildiz-games</groupId>
-      <artifactId>component-native-libcurl</artifactId>
-      <version>7.67.0.0-SNAPSHOT</version>
+      <artifactId>component-native-libarchive</artifactId>
+      <version>3.4.0.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>
