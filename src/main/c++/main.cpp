@@ -5,8 +5,11 @@
 
 bool isFileExists (const std::string& name);
 
+size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream);
+
 int main () {
     std::ofstream log;
+    curl_global_init(CURL_GLOBAL_ALL);
     CURL *curl = curl_easy_init();
     log.open("retro-manager.log", std::ios::out | std::ios::trunc );
     
@@ -14,8 +17,15 @@ int main () {
     log << "Checking java availability" << std::endl;
     if(!isFileExists("java/bin/java.exe")) {
         log << "Java not found, dowloading it..." << std::endl;
-        curl_easy_setopt(curl, CURLOPT_URL, "java.tar.gz https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz");
-        //    @curl.exe -s -Lo java.tar.gz https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz
+        FILE *javaFile;
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
+        curl_easy_setopt(curl, CURLOPT_URL, "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz");
+        javaFile = fopen("java.tar.gz", "wb");
+        if(javaFile) {
+            curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, javaFile);
+            curl_easy_perform(curl);
+            fclose(javaFile);
+        }
         log << "Java download complete." << std::endl;
         log << "Unpacking java.tar.gz..." << std::endl;
         //@tar -zxvf java.tar.gz
@@ -33,7 +43,7 @@ int main () {
         //@tar -zxvf java.tar.gz
         //echo Unpack java.tar.gz complete. >> launch-retro.log
     //) else (
-        //echo Java version is correct. >> launch-retro.log
+        //log << "echo Java version is correct." << std::endl;
     }
 //)
 log << "Downloading last version of the launcher..." << std::endl;
@@ -52,4 +62,10 @@ inline bool isFileExists (const std::string& name) {
     } else {
         return false;
     }   
+}
+
+size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
+{
+  size_t written = fwrite(ptr, size, nmemb, (FILE *)stream);
+  return written;
 }
