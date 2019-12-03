@@ -6,7 +6,7 @@
 
 bool isFileExists (const std::string& name);
 
-//size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream);
+size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream);
 
 int main () {
     std::ofstream log;
@@ -19,14 +19,14 @@ int main () {
     if(!isFileExists("java/bin/java.exe")) {
         log << "Java not found, dowloading it..." << std::endl;
         FILE *javaFile;
-       // curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
-       // curl_easy_setopt(curl, CURLOPT_URL, "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz");
-      //  javaFile = fopen("java.tar.gz", "wb");
-      //  if(javaFile) {
-      //      curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, javaFile);
-      //      curl_easy_perform(curl);
-      //      fclose(javaFile);
-      //  }
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
+        curl_easy_setopt(curl, CURLOPT_URL, "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz");
+        javaFile = fopen("java.tar.gz", "wb");
+        if(javaFile) {
+            curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, javaFile);
+            curl_easy_perform(curl);
+            fclose(javaFile);
+        }
         log << "Java download complete." << std::endl;
         log << "Unpacking java.tar.gz..." << std::endl;
         //@tar -zxvf java.tar.gz
@@ -65,8 +65,7 @@ inline bool isFileExists (const std::string& name) {
     }   
 }
 
-//size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
-//{
-//  size_t written = fwrite(ptr, size, nmemb, (FILE *)stream);
-//  return written;
-//}
+size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream) {
+  size_t written = fwrite(ptr, size, nmemb, (FILE *)stream);
+  return written;
+}
