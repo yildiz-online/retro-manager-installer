@@ -33,7 +33,15 @@ int main () {
         log << "Unpack java.tar.gz complete." << std::endl;
     } else {
         log << "Java found, checking version..." << std::endl;
-      //@curl.exe -Lo expected-release https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/release_jre_win64
+        FILE *javaVersionFile;
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
+        curl_easy_setopt(curl, CURLOPT_URL, "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/release_jre_win64");
+        javaVersionFile = fopen("expected-release", "wb");
+        if(javaVersionFile) {
+            curl_easy_setopt(curl, CURLOPT_WRITEDATA, javaVersionFile);
+            curl_easy_perform(curl);
+            fclose(javaVersionFile);
+        }    
        //@fc /b java\release expected-release > nul
        //if errorlevel 1 (
         //echo Java version not matching, downloading the correct one... >> launch-retro.log
