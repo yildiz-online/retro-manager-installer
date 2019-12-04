@@ -3,6 +3,8 @@
 #include <string>
 #include <curl/curl.h>
 #include <stdio.h>
+#include <archive.h>
+#include <archive_entry.h>
 
 bool isFileExists (const std::string& name);
 
