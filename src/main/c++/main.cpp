@@ -8,6 +8,8 @@ bool isFileExists (const std::string& name);
 
 size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream);
 
+void downloadFile(const std::string& fileName, const std::string& url, CURL* curl);
+
 int main () {
     std::ofstream log;
     curl_global_init(CURL_GLOBAL_ALL);
@@ -18,30 +20,14 @@ int main () {
     log << "Checking java availability" << std::endl;
     if(!isFileExists("java/bin/java.exe")) {
         log << "Java not found, dowloading it..." << std::endl;
-        FILE *javaFile;
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
-        curl_easy_setopt(curl, CURLOPT_URL, "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz");
-        javaFile = fopen("java.tar.gz", "wb");
-        if(javaFile) {
-            curl_easy_setopt(curl, CURLOPT_WRITEDATA, javaFile);
-            curl_easy_perform(curl);
-            fclose(javaFile);
-        }
+        downloadFile("java.tar.gz", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz", curl);
         log << "Java download complete." << std::endl;
         log << "Unpacking java.tar.gz..." << std::endl;
         //@tar -zxvf java.tar.gz
         log << "Unpack java.tar.gz complete." << std::endl;
     } else {
         log << "Java found, checking version..." << std::endl;
-        FILE *javaVersionFile;
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
-        curl_easy_setopt(curl, CURLOPT_URL, "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/release_jre_win64");
-        javaVersionFile = fopen("expected-release", "wb");
-        if(javaVersionFile) {
-            curl_easy_setopt(curl, CURLOPT_WRITEDATA, javaVersionFile);
-            curl_easy_perform(curl);
-            fclose(javaVersionFile);
-        }    
+        downloadFile("expected-release", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/release_jre_win64", curl);  
        //@fc /b java\release expected-release > nul
        //if errorlevel 1 (
         //echo Java version not matching, downloading the correct one... >> launch-retro.log
@@ -62,6 +48,18 @@ log <<  "Starting play50hz launcher..." << std::endl;
 //@%~dp0java/bin/java.exe -jar launcher.jar
     
     return 0;
+}
+
+void downloadFile(const std::string& fileName, const std::string& url, CURL* curl) {
+    FILE* file;
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
+    curl_easy_setopt(curl, CURLOPT_URL, url);
+    javaFile = fopen(fileName, "wb");
+    if(javaFile) {
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
+        curl_easy_perform(curl);
+        fclose(file);
+    }   
 }
 
 inline bool isFileExists (const std::string& name) {
