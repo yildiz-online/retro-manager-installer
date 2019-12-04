@@ -5,6 +5,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DCURL_STATICLIB")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DCURL_STATICLIB")
 
 include_directories("${CMAKE_SOURCE_DIR}/curl/win64/include")
+include_directories("${CMAKE_SOURCE_DIR}/libarchive/win64/include")
 
 file(
         GLOB_RECURSE
