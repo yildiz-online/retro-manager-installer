@@ -54,8 +54,8 @@ void downloadFile(const std::string& fileName, const std::string& url, CURL* cur
     FILE* file;
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
     curl_easy_setopt(curl, CURLOPT_URL, url);
-    javaFile = fopen(fileName.c_str(), "wb");
-    if(javaFile) {
+    file = fopen(fileName.c_str(), "wb");
+    if(file) {
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
         curl_easy_perform(curl);
         fclose(file);
