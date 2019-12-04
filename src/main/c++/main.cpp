@@ -26,6 +26,14 @@ int main () {
         log << "Java download complete." << std::endl;
         log << "Unpacking java.tar.gz..." << std::endl;
         //@tar -zxvf java.tar.gz
+        
+        struct archive *a;
+	    a = archive_read_new();
+
+	    archive_read_support_filter_gzip(a);
+	    archive_read_support_format_raw(a);
+
+        
         log << "Unpack java.tar.gz complete." << std::endl;
     } else {
         log << "Java found, checking version..." << std::endl;
