@@ -16,7 +16,7 @@ static void	errmsg(const char *);
 static void	extract(const char *filename, int do_extract, int flags);
 static void	fail(const char *, const char *, int);
 static int	copy_data(struct archive *, struct archive *);
-static void	msg(const char *);
+
 static void	usage(void);
 static void	warn(const char *, const char *);
 
@@ -119,18 +119,9 @@ extract(const char *filename, int do_extract, int flags)
 	a = archive_read_new();
 	ext = archive_write_disk_new();
 	archive_write_disk_set_options(ext, flags);
-	/*
-	 * Note: archive_write_disk_set_standard_lookup() is useful
-	 * here, but it requires library routines that can add 500k or
-	 * more to a static executable.
-	 */
+
 	archive_read_support_format_tar(a);
-	/*
-	 * On my system, enabling other archive formats adds 20k-30k
-	 * each.  Enabling gzip decompression adds about 20k.
-	 * Enabling bzip2 is more expensive because the libbz2 library
-	 * isn't very well factored.
-	 */
+
 	if (filename != NULL && strcmp(filename, "-") == 0)
 		filename = NULL;
 	if ((r = archive_read_open_filename(a, filename, 10240)))
@@ -144,9 +135,9 @@ extract(const char *filename, int do_extract, int flags)
 			fail("archive_read_next_header()",
 			    archive_error_string(a), 1);
 		if (verbose && do_extract)
-			msg("x ");
+			log << "x ";
 		if (verbose || !do_extract)
-			msg(archive_entry_pathname(entry));
+			log << archive_entry_pathname(entry);
 		if (do_extract) {
 			r = archive_write_header(ext, entry);
 			if (r != ARCHIVE_OK)
@@ -162,7 +153,7 @@ extract(const char *filename, int do_extract, int flags)
 
 		}
 		if (verbose || !do_extract)
-			msg("\n");
+			log << std::endl;
 	}
 	archive_read_close(a);
 	archive_read_free(a);
@@ -199,19 +190,6 @@ copy_data(struct archive *ar, struct archive *aw)
 	}
 }
 
-/*
- * These reporting functions use low-level I/O; on some systems, this
- * is a significant code reduction.  Of course, on many server and
- * desktop operating systems, malloc() and even crt rely on printf(),
- * which in turn pulls in most of the rest of stdio, so this is not an
- * optimization at all there.  (If you're going to pay 100k or more
- * for printf() anyway, you may as well use it!)
- */
-static void
-msg(const char *m)
-{
-	write(1, m, strlen(m));
-}
 
 static void
 errmsg(const char *m)
