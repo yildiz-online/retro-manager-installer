@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <archive.h>
 #include <archive_entry.h>
+#include <windows.h>
 
 std::ofstream log;
 
@@ -15,6 +16,8 @@ size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream);
 void downloadFile(const std::string& fileName, const std::string& url, CURL* curl);
 
 int compareFiles(const std::string& file1, const std::string file2);
+
+void runApp();
 
 static void	errmsg(const char *);
 static void	extract(const char *filename, int do_extract, int flags);
@@ -55,13 +58,36 @@ int main () {
 	    log << "echo Java version is correct." << std::endl;
 	}
     }
-log << "Downloading last version of the launcher..." << std::endl;
-downloadFile("launcher.jar", "http://play50hz-data.yildiz-games.be/launcher.jar", curl);  
-log << "Download last version of the launcher complete." << std::endl;
-log <<  "Starting play50hz launcher..." << std::endl;
-//@%~dp0java/bin/java.exe -jar launcher.jar
+    log << "Downloading last version of the launcher..." << std::endl;
+    downloadFile("launcher.jar", "http://play50hz-data.yildiz-games.be/launcher.jar", curl);  
+    log << "Download last version of the launcher complete." << std::endl;
+    log <<  "Starting play50hz launcher..." << std::endl;
+    runApp();
     
     return 0;
+}
+
+void runApp() {
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+    ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
+    ZeroMemory(&pi, sizeof(pi));
+
+    CONST wchar_t* commandLine = TEXT("-jar launcher.jar");
+
+    CreateProcessW(
+        L"java/bin/java.exe",      // app path
+        (LPWSTR)commandLine,     // Command line 
+        NULL,           // Process handle not inheritable
+        NULL,           // Thread handle not inheritable
+        FALSE,          // Set handle inheritance to FALSE
+        0,              // No creation flags
+        NULL,           // Use parent's environment block
+        NULL,           // Use parent's starting directory
+        &si,            // Pointer to STARTUPINFO structure
+        &pi)           // Pointer to PROCESS_INFORMATION structure
+        );
 }
 
 void downloadFile(const std::string& fileName, const std::string& url, CURL* curl) {
