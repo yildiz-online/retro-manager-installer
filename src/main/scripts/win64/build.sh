@@ -8,4 +8,6 @@ cmake . \
 make
 r1=$?
 
+cp retro-installer.exe ../../../../target/classes/win64/retro-installer.exe
+
 exit ${r1}
