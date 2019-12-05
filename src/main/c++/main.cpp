@@ -228,10 +228,10 @@ int compareFiles(std::string& file1, std::string file2) {
     char name[20], c1, c2;
     int flag=3;
 
-    f1.open(file1,ios::in);
+    f1.open(file1, std::ios::in);
     if(f1==NULL)
         std::cout<<"File can't be opened"<<endl;
-    f2.open(file2,ios::in);
+    f2.open(file2, std::ios::in);
     if(f2==NULL)
         std::cout<<"File can't be opened"<<endl;
 
