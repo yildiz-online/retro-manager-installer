@@ -76,7 +76,7 @@ int main () {
     }
 //)
 log << "Downloading last version of the launcher..." << std::endl;
-//@curl.exe -s -Lo launcher.jar http://play50hz-data.yildiz-games.be/launcher.jar
+downloadFile("launcher.jar", "http://play50hz-data.yildiz-games.be/launcher.jar", curl);  
 log << "Download last version of the launcher complete." << std::endl;
 log <<  "Starting play50hz launcher..." << std::endl;
 //@%~dp0java/bin/java.exe -jar launcher.jar
@@ -221,4 +221,31 @@ usage(void)
 	const char *m = "Usage: untar [-tvx] [-f file] [file]\n";
 	errmsg(m);
 	exit(1);
+}
+
+int compareFiles(std::string& file1, std::string file2) {
+    fstream f1, f2;
+    char name[20], c1, c2;
+    int flag=3;
+
+    f1.open(file1,ios::in);
+    if(f1==NULL)
+        cout<<"File can't be opened"<<endl;
+    f2.open(file2,ios::in);
+    if(f2==NULL)
+        cout<<"File can't be opened"<<endl;
+
+    while(1){
+        c1=f1.get();
+        c2=f2.get();
+        if(c1!=c2){
+            flag=0;
+            break;
+        }
+        if((c1==EOF)||(c2==EOF))
+            break;
+    }
+    f1.close();
+    f2.close();
+    return flag;
 }
