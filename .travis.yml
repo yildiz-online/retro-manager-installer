@@ -27,9 +27,8 @@ script:
 deploy:
   provider: releases
   api_key: "$GITHUB_TOKEN"
-  file: "/src/target/classes/win64/retro-installer.exe"
+  file: "target/classes/win64/retro-installer.exe"
   skip_cleanup: true
-  draft: true
   on:
     branches:
       only:
