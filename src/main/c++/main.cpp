@@ -50,7 +50,7 @@ int main () {
             log << "Java download complete." << std::endl;
             log << "Unpacking java.tar.gz..." << std::endl;
             //extract( "java.tar.gz", 1, 0);
-            log << "Unpack java.tar.gz complete." << launch-retro.log
+            log << "Unpack java.tar.gz complete." << std::endl;
         } else { 
 	    log << "echo Java version is correct." << std::endl;
 	}
