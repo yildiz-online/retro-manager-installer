@@ -28,6 +28,7 @@ int main () {
         //@tar -zxvf java.tar.gz
         
         struct archive *a;
+	struct archive_entry *entry;
 	a = archive_read_new();
 	int r;
         archive_read_support_filter_gzip(a);
