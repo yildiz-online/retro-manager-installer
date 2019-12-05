@@ -42,7 +42,7 @@ int main () {
     } else {
         log << "Java found, checking version..." << std::endl;
         downloadFile("expected-release", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/release_jre_win64", curl);  
-        if(!compareFiles("java\release", "expected-release") {
+        if(!compareFiles("java/release", "expected-release")) {
 	    log << "Java version not matching, downloading the correct one..." << std::endl;
             downloadFile("java.tar.gz", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz", curl);
             log << "Java download complete." << std::endl;
