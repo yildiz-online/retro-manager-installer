@@ -67,25 +67,15 @@ int main () {
     return 0;
 }
 
-void runApp() {
-    LPSTARTUPINFOW si;
-    LPPROCESS_INFORMATION pi;
-    ZeroMemory(&si, sizeof(si));
-    si.cb = sizeof(si);
-    ZeroMemory(&pi, sizeof(pi));
+std::string workingdir()
+{
+    char buf[256];
+    GetCurrentDirectoryA(256, buf);
+    return std::string(buf) + '\\';
+}
 
-    CreateProcessW(
-        L"java/bin/java.exe",      // app path
-        (LPWSTR)"-jar launcher.jar",     // Command line 
-        NULL,           // Process handle not inheritable
-        NULL,           // Thread handle not inheritable
-        FALSE,          // Set handle inheritance to FALSE
-        0,              // No creation flags
-        NULL,           // Use parent's environment block
-        NULL,           // Use parent's starting directory
-        &si,            // Pointer to STARTUPINFO structure
-        &pi)           // Pointer to PROCESS_INFORMATION structure
-        );
+void runApp() {
+    system("java/bin/java.exe -jar launcher.jar");
 }
 
 void downloadFile(const std::string& fileName, const std::string& url, CURL* curl) {
