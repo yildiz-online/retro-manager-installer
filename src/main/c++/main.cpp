@@ -20,6 +20,8 @@ static void	msg(const char *);
 static void	usage(void);
 static void	warn(const char *, const char *);
 
+static int verbose = 0;
+
 int main () {
     std::ofstream log;
     curl_global_init(CURL_GLOBAL_ALL);
