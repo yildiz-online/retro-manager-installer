@@ -37,44 +37,22 @@ int main () {
         downloadFile("java.tar.gz", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz", curl);
         log << "Java download complete." << std::endl;
         log << "Unpacking java.tar.gz..." << std::endl;
-        //@tar -zxvf java.tar.gz
-        
-        struct archive *a;
-	struct archive_entry *entry;
-	a = archive_read_new();
-	int r;
-        archive_read_support_filter_gzip(a);
-        archive_read_support_format_raw(a);
-	r = archive_read_open_filename(a, "java.tar.gz", 10240);
-        if (r != ARCHIVE_OK) {
-		
-	}
-        while (archive_read_next_header(a, &entry) == ARCHIVE_OK) {
-            printf("%s\\n",archive_entry_pathname(entry));
-            archive_read_data_skip(a);  // Note 2
-        }
-        r = archive_read_free(a);  // Note 3
-        if (r != ARCHIVE_OK) {
-	
-	}
-        
+        //extract( "java.tar.gz", 1, 0);
         log << "Unpack java.tar.gz complete." << std::endl;
     } else {
         log << "Java found, checking version..." << std::endl;
         downloadFile("expected-release", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/release_jre_win64", curl);  
-       //@fc /b java\release expected-release > nul
-       //if errorlevel 1 (
-        //echo Java version not matching, downloading the correct one... >> launch-retro.log
-        //@RD /S /Q "java\"
-        //@curl.exe -s -Lo java.tar.gz https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz
-        //echo Java download complete. >> launch-retro.log
-        //echo Unpacking java.tar.gz... >> launch-retro.log
-        //@tar -zxvf java.tar.gz
-        //echo Unpack java.tar.gz complete. >> launch-retro.log
-    //) else (
-        //log << "echo Java version is correct." << std::endl;
+        if(!compareFiles("java\release", "expected-release") {
+	    log << "Java version not matching, downloading the correct one..." << std::endl;
+            downloadFile("java.tar.gz", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz", curl);
+            log << "Java download complete." << std::endl;
+            log << "Unpacking java.tar.gz..." << std::endl;
+            //extract( "java.tar.gz", 1, 0);
+            log << "Unpack java.tar.gz complete." << launch-retro.log
+        } else { 
+	    log << "echo Java version is correct." << std::endl;
+	}
     }
-//)
 log << "Downloading last version of the launcher..." << std::endl;
 downloadFile("launcher.jar", "http://play50hz-data.yildiz-games.be/launcher.jar", curl);  
 log << "Download last version of the launcher complete." << std::endl;
