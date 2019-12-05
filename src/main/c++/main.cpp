@@ -14,7 +14,7 @@ size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream);
 
 void downloadFile(const std::string& fileName, const std::string& url, CURL* curl);
 
-int compareFiles(std::string& file1, std::string file2);
+int compareFiles(const std::string& file1, const std::string file2);
 
 static void	errmsg(const char *);
 static void	extract(const char *filename, int do_extract, int flags);
@@ -203,7 +203,7 @@ usage(void)
 	exit(1);
 }
 
-int compareFiles(std::string& file1, std::string file2) {
+int compareFiles(const std::string& file1, const std::string file2) {
     std::fstream f1, f2;
     char name[20], c1, c2;
     int flag=3;
