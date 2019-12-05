@@ -6,6 +6,8 @@
 #include <archive.h>
 #include <archive_entry.h>
 
+std::ofstream log;
+
 bool isFileExists (const std::string& name);
 
 size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream);
@@ -23,7 +25,7 @@ static void	warn(const char *, const char *);
 static int verbose = 0;
 
 int main () {
-    std::ofstream log;
+    
     curl_global_init(CURL_GLOBAL_ALL);
     CURL *curl = curl_easy_init();
     log.open("retro-manager.log", std::ios::out | std::ios::trunc );
