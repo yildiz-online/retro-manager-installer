@@ -74,11 +74,9 @@ void runApp() {
     si.cb = sizeof(si);
     ZeroMemory(&pi, sizeof(pi));
 
-    CONST wchar_t* commandLine = TEXT("-jar launcher.jar");
-
     CreateProcessW(
         L"java/bin/java.exe",      // app path
-        (LPWSTR)commandLine,     // Command line 
+        (LPWSTR)"-jar launcher.jar",     // Command line 
         NULL,           // Process handle not inheritable
         NULL,           // Thread handle not inheritable
         FALSE,          // Set handle inheritance to FALSE
