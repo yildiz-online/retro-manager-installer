@@ -68,8 +68,8 @@ int main () {
 }
 
 void runApp() {
-    STARTUPINFO si;
-    PROCESS_INFORMATION pi;
+    LPSTARTUPINFOW si;
+    LPPROCESS_INFORMATION pi;
     ZeroMemory(&si, sizeof(si));
     si.cb = sizeof(si);
     ZeroMemory(&pi, sizeof(pi));
