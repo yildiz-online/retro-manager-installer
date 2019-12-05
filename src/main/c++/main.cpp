@@ -12,6 +12,14 @@ size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream);
 
 void downloadFile(const std::string& fileName, const std::string& url, CURL* curl);
 
+static void	errmsg(const char *);
+static void	extract(const char *filename, int do_extract, int flags);
+static void	fail(const char *, const char *, int);
+static int	copy_data(struct archive *, struct archive *);
+static void	msg(const char *);
+static void	usage(void);
+static void	warn(const char *, const char *);
+
 int main () {
     std::ofstream log;
     curl_global_init(CURL_GLOBAL_ALL);
