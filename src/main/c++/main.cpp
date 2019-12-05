@@ -224,16 +224,16 @@ usage(void)
 }
 
 int compareFiles(std::string& file1, std::string file2) {
-    fstream f1, f2;
+    std::fstream f1, f2;
     char name[20], c1, c2;
     int flag=3;
 
     f1.open(file1,ios::in);
     if(f1==NULL)
-        cout<<"File can't be opened"<<endl;
+        std::cout<<"File can't be opened"<<endl;
     f2.open(file2,ios::in);
     if(f2==NULL)
-        cout<<"File can't be opened"<<endl;
+        std::cout<<"File can't be opened"<<endl;
 
     while(1){
         c1=f1.get();
