@@ -11,7 +11,7 @@ std::ofstream log;
 
 bool isFileExists (const std::string& name);
 
-size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream);
+static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream);
 
 void downloadFile(const std::string& fileName, const std::string& url, CURL* curl);
 
@@ -79,9 +79,12 @@ void runApp() {
 }
 
 void downloadFile(const std::string& fileName, const std::string& url, CURL* curl) {
+	 log <<  "Start download" << std::endl;
     FILE* file;
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
     curl_easy_setopt(curl, CURLOPT_URL, url);
+	curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+	curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, 0L);
     file = fopen(fileName.c_str(), "wb");
     if(file) {
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
@@ -99,7 +102,8 @@ inline bool isFileExists (const std::string& name) {
     }   
 }
 
-size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream) {
+static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
+{
   size_t written = fwrite(ptr, size, nmemb, (FILE *)stream);
   return written;
 }
