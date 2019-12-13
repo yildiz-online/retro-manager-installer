@@ -83,7 +83,7 @@ static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
 }
 
 void downloadFile(const std::string& fileName, const std::string& url, CURL* curl) {
-	 log <<  "Start download" << std::endl;
+    log <<  "Start download" << std::endl;
     FILE* file;
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
     curl_easy_setopt(curl, CURLOPT_URL, url);
