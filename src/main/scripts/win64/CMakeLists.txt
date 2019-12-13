@@ -1,10 +1,8 @@
 cmake_minimum_required(VERSION 2.8.7)
 project(retro-installer)
 
-set(CMAKE_CXX_STANDARD 11)
-
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DCURL_STATICLIB -static-libstdc++ -static-libgcc -std=gnu++11")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DCURL_STATICLIB -static-libstdc++ -static-libgcc -std=gnu++11")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DCURL_STATICLIB -static-libstdc++ -static-libgcc -std=c++0x")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DCURL_STATICLIB -static-libstdc++ -static-libgcc -std=c++0x")
 
 set(CMAKE_CXX_STANDARD_LIBRARIES "${CMAKE_CXX_STANDARD_LIBRARIES} -static-libgcc -static-libstdc++")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,--no-whole-archive") 
