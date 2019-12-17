@@ -6,7 +6,7 @@
 #include <archive.h>
 #include <archive_entry.h>
 #include <windows.h>
-#include "httplib.h"
+#include "httprequest.h"
 
 std::ofstream log;
 
@@ -84,14 +84,7 @@ static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
 }
 
 void downloadFile(const std::string& fileName, const std::string& url) {
-	httplib::Client client(url, 80);
-std::shared_ptr<httplib::Response> res =
-    cli.Get("/", [](uint64_t len, uint64_t total) {
-        printf("%lld / %lld bytes => %d%% complete\n",
-            len, total,
-            (int)((len/total)*100));
-        return true; // return 'false' if you want to cancel the request.
-    }
+	
 );
 	
 }
