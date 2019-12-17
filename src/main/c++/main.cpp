@@ -40,17 +40,17 @@ int main () {
     log << "Checking java availability" << std::endl;
     if(!isFileExists("java/bin/java.exe")) {
         log << "Java not found, dowloading it..." << std::endl;
-        downloadFile("java.tar.gz", "http://play50hz-data.yildiz-games.be", curl);
+        downloadFile("java.tar.gz", "http://play50hz-data.yildiz-games.be");
         log << "Java download complete." << std::endl;
         log << "Unpacking java.tar.gz..." << std::endl;
         //extract( "java.tar.gz", 1, 0);
         log << "Unpack java.tar.gz complete." << std::endl;
     } else {
         log << "Java found, checking version..." << std::endl;
-        downloadFile("expected-release", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/release_jre_win64", curl);  
+        downloadFile("expected-release", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/release_jre_win64");  
         if(!compareFiles("java/release", "expected-release")) {
 	    log << "Java version not matching, downloading the correct one..." << std::endl;
-            downloadFile("java.tar.gz", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz", curl);
+            downloadFile("java.tar.gz", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz");
             log << "Java download complete." << std::endl;
             log << "Unpacking java.tar.gz..." << std::endl;
             //extract( "java.tar.gz", 1, 0);
@@ -60,7 +60,7 @@ int main () {
 	}
     }
     log << "Downloading last version of the launcher..." << std::endl;
-    downloadFile("launcher.jar", "http://play50hz-data.yildiz-games.be/launcher.jar", curl);  
+    downloadFile("launcher.jar", "http://play50hz-data.yildiz-games.be/launcher.jar");  
     log << "Download last version of the launcher complete." << std::endl;
     log <<  "Starting play50hz launcher..." << std::endl;
     runApp();
