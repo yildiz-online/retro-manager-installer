@@ -90,7 +90,7 @@ try
 {
     http::Request request(url);
 
-    const http::Response getResponse = request.send("GET");
+    const http::Response response = request.send("GET");
     std::ofstream outfile(fileName, std::ofstream::binary);
     outfile.write(reinterpret_cast<const char*>(response.body.data()), static_cast<std::streamsize>(response.body.size()));
 }
