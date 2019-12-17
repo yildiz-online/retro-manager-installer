@@ -40,7 +40,7 @@ int main () {
     log << "Checking java availability" << std::endl;
     if(!isFileExists("java/bin/java.exe")) {
         log << "Java not found, dowloading it..." << std::endl;
-        downloadFile("java.tar.gz", "http://play50hz-data.yildiz-games.be");
+        downloadFile("java.tar.gz", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz");
         log << "Java download complete." << std::endl;
         log << "Unpacking java.tar.gz..." << std::endl;
         //extract( "java.tar.gz", 1, 0);
