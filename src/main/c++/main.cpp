@@ -12,7 +12,9 @@ std::ofstream log;
 
 bool isFileExists (const std::string& name);
 
-void downloadFile(const std::string& fileName, const std::string& url, CURL* curl);
+void downloadFile(const std::string& fileName, const std::string& url);
+
+void _downloadFile(const std::string& fileName, const std::string& url, CURL* curl);
 
 int compareFiles(const std::string& file1, const std::string file2);
 
