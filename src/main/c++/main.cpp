@@ -86,7 +86,19 @@ static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
 }
 
 void downloadFile(const std::string& fileName, const std::string& url) {
+try
+{
+    // you can pass http::InternetProtocol::V6 to Request to make an IPv6 request
+    http::Request request("url");
 
+    // send a get request
+    const http::Response getResponse = request.send("GET");
+    std::cout << std::string(getResponse.body.begin(), getResponse.body.end()) << '\n'; // print the result
+}
+catch (const std::exception& e)
+{
+    std::cerr << "Request failed, error: " << e.what() << '\n';
+}
 	
 }
 
