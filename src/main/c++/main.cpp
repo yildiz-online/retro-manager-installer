@@ -39,7 +39,6 @@ int main () {
         log << "Unpacking java.tar.gz..." << std::endl;
         extract( "java.tar.gz", 1, 0);
         log << "Unpack java.tar.gz complete." << std::endl;
-	remove("java.tar.gz");
     } else {
         log << "Java found, checking version..." << std::endl;
         downloadFile("expected-release", "http://files.yildiz-games.be/release");  
@@ -50,7 +49,6 @@ int main () {
             log << "Unpacking java.tar.gz..." << std::endl;
             extract( "java.tar.gz", 1, 0);
             log << "Unpack java.tar.gz complete." << std::endl;
-            remove("java.tar.gz");
         } else { 
 	    log << "Java version is correct." << std::endl;
 	}
