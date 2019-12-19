@@ -73,7 +73,7 @@ std::string workingdir()
 
 void runApp() {
     std::string cmd = workingdir() +  "/java/bin/java.exe -jar play50hz.jar";
-    system(cmd);
+    system(cmd.c_str());
 }
 
 static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
