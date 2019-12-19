@@ -18,12 +18,12 @@ file(
         ${CMAKE_SOURCE_DIR} ../../c++/*.h
 )
 
-add_executable(play50hz-server ../../c++/main.cpp app.rc)
+add_executable(Play50hz-server ../../c++/main.cpp app.rc)
 
 
-target_link_libraries(play50hz-server ${CMAKE_SOURCE_DIR}/libarchive/win64/lib/libarchive_static.a)
-target_link_libraries(play50hz-server ${CMAKE_SOURCE_DIR}/zlib/win64/lib/libzlibstatic.a)
-target_link_libraries(play50hz-server wsock32)
-target_link_libraries(play50hz-server ws2_32)
-target_link_libraries(play50hz-server pthread)
+target_link_libraries(Play50hz-server ${CMAKE_SOURCE_DIR}/libarchive/win64/lib/libarchive_static.a)
+target_link_libraries(Play50hz-server ${CMAKE_SOURCE_DIR}/zlib/win64/lib/libzlibstatic.a)
+target_link_libraries(Play50hz-server wsock32)
+target_link_libraries(Play50hz-server ws2_32)
+target_link_libraries(Play50hz-server pthread)
 
