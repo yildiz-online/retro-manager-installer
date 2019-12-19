@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <curl/curl.h>
 #include <stdio.h>
 #include <archive.h>
 #include <archive_entry.h>
