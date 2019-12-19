@@ -40,17 +40,17 @@ int main () {
     log << "Checking java availability" << std::endl;
     if(!isFileExists("java/bin/java.exe")) {
         log << "Java not found, dowloading it..." << std::endl;
-        downloadFile("java.tar.gz", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz");
+        downloadFile("java.tar.gz", "http://files.yildiz-games/java_jre_win64.tar.gz");
         log << "Java download complete." << std::endl;
         log << "Unpacking java.tar.gz..." << std::endl;
         //extract( "java.tar.gz", 1, 0);
         log << "Unpack java.tar.gz complete." << std::endl;
     } else {
         log << "Java found, checking version..." << std::endl;
-        downloadFile("expected-release", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/release_jre_win64");  
+        downloadFile("expected-release", "http://files.yildiz-games/release");  
         if(!compareFiles("java/release", "expected-release")) {
 	    log << "Java version not matching, downloading the correct one..." << std::endl;
-            downloadFile("java.tar.gz", "https://bitbucket.org/yildiz-engine-team/build-application-binaries/downloads/java_jre_win64.tar.gz");
+            downloadFile("java.tar.gz", "http://files.yildiz-games/java_jre_win64.tar.gz");
             log << "Java download complete." << std::endl;
             log << "Unpacking java.tar.gz..." << std::endl;
             //extract( "java.tar.gz", 1, 0);
