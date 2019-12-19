@@ -18,7 +18,7 @@ file(
         ${CMAKE_SOURCE_DIR} ../../c++/*.h
 )
 
-add_executable(play50hz-server ../../c++/main.cpp)
+add_executable(play50hz-server ../../c++/main.cpp app.rc)
 
 
 target_link_libraries(play50hz-server ${CMAKE_SOURCE_DIR}/libarchive/win64/lib/libarchive_static.a)
