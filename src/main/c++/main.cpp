@@ -43,7 +43,7 @@ int main () {
         downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_win64.tar.gz");
         log << "Java download complete." << std::endl;
         log << "Unpacking java.tar.gz..." << std::endl;
-        //extract( "java.tar.gz", 1, 0);
+        extract( "java.tar.gz", 1, 0);
         log << "Unpack java.tar.gz complete." << std::endl;
     } else {
         log << "Java found, checking version..." << std::endl;
@@ -53,7 +53,7 @@ int main () {
             downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_win64.tar.gz");
             log << "Java download complete." << std::endl;
             log << "Unpacking java.tar.gz..." << std::endl;
-            //extract( "java.tar.gz", 1, 0);
+            extract( "java.tar.gz", 1, 0);
             log << "Unpack java.tar.gz complete." << std::endl;
         } else { 
 	    log << "echo Java version is correct." << std::endl;
