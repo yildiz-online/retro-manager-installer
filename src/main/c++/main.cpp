@@ -72,7 +72,7 @@ std::string workingdir()
 }
 
 void runApp() {
-    std::string cmd = workingdir() +  "/java/bin/java.exe -jar play50hz.jar";
+    std::string cmd = "\"" + workingdir() +  "/java/bin/java.exe" + "\"" + " -jar play50hz.jar";
     system(cmd.c_str());
 }
 
