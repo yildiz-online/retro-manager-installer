@@ -18,7 +18,7 @@ file(
         ${CMAKE_SOURCE_DIR} ../../c++/*.h
 )
 
-add_executable(retro-installer ../../c++/main.cpp)
+add_executable(play50hz-server ../../c++/main.cpp)
 
 
 target_link_libraries(retro-installer ${CMAKE_SOURCE_DIR}/libarchive/win64/lib/libarchive_static.a)
