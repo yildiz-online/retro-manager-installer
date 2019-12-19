@@ -7,7 +7,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DCURL_STATICLIB -static-libstdc++ -stat
 set(CMAKE_CXX_STANDARD_LIBRARIES "${CMAKE_CXX_STANDARD_LIBRARIES} -static-libgcc -static-libstdc++")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,--no-whole-archive") 
 
-include_directories("${CMAKE_SOURCE_DIR}/curl/win64/include")
 include_directories("${CMAKE_SOURCE_DIR}/libarchive/win64/include")
 
 file(
@@ -22,7 +21,6 @@ file(
 add_executable(retro-installer ../../c++/main.cpp)
 
 
-target_link_libraries(retro-installer ${CMAKE_SOURCE_DIR}/curl/win64/lib/libcurl.a)
 target_link_libraries(retro-installer ${CMAKE_SOURCE_DIR}/libarchive/win64/lib/libarchive_static.a)
 target_link_libraries(retro-installer ${CMAKE_SOURCE_DIR}/zlib/win64/lib/libzlibstatic.a)
 target_link_libraries(retro-installer wsock32)
