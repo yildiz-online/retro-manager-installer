@@ -9,6 +9,6 @@ make
 r1=$?
 
 mkdir -p ../../../../target/classes/win64/
-cp retro-installer.exe ../../../../target/classes/win64/retro-installer.exe
+cp Play50hz-server.exe ../../../../target/classes/win64/Play50hz-server.exe
 
 exit ${r1}
