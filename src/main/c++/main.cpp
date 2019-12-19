@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <archive.h>
 #include <archive_entry.h>
-#include <filesystem>
 #include "httprequest.h"
 
 std::ofstream log;
@@ -67,14 +66,14 @@ int main () {
 
 std::string workingdir()
 {
-    char buf[256];
-    GetCurrentDirectoryA(256, buf);
-    return std::string(buf) + '\\';
+    char buf[MAX_PATH];
+    GetCurrentDirectoryA(MAX_PATH, buf);
+    return std::string(buf);
 }
 
 void runApp() {
-    std::filesystem::path cwd = std::filesystem::current_path() / "java/bin/java.exe";
-    system(cwd.string() + " -jar play50hz.jar");
+    std::string cmd = workingdir() +  "/java/bin/java.exe -jar play50hz.jar";
+    system(cmd);
 }
 
 static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
