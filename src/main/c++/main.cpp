@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <archive.h>
 #include <archive_entry.h>
+#include <filesystem>
 #include "httprequest.h"
 
 std::ofstream log;
@@ -72,7 +73,8 @@ std::string workingdir()
 }
 
 void runApp() {
-    system("java/bin/java.exe -jar play50hz.jar");
+    std::filesystem::path cwd = std::filesystem::current_path() / "java/bin/java.exe";
+    system(cwd.string() + " -jar play50hz.jar");
 }
 
 static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
