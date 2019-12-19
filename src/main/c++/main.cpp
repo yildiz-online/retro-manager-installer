@@ -56,13 +56,13 @@ int main () {
             extract( "java.tar.gz", 1, 0);
             log << "Unpack java.tar.gz complete." << std::endl;
         } else { 
-	    log << "echo Java version is correct." << std::endl;
+	    log << "Java version is correct." << std::endl;
 	}
     }
-    log << "Downloading last version of the launcher..." << std::endl;
-    downloadFile("launcher.jar", "http://play50hz-data.yildiz-games.be/launcher.jar");  
+    log << "Downloading last version of the application..." << std::endl;
+    downloadFile("play50hz.jar", "http://play50hz-data.yildiz-games.be/launcher.jar");  
     log << "Download last version of the launcher complete." << std::endl;
-    log <<  "Starting play50hz launcher..." << std::endl;
+    log <<  "Starting play50hz..." << std::endl;
     runApp();
     
     return 0;
@@ -76,7 +76,7 @@ std::string workingdir()
 }
 
 void runApp() {
-    system("java/bin/java.exe -jar launcher.jar");
+    system("java/bin/java.exe -jar play50hz.jar");
 }
 
 static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
