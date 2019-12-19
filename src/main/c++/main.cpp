@@ -30,9 +30,6 @@ static void	warn(const char *, const char *);
 static int verbose = 0;
 
 int main () {
-    
-    curl_global_init(CURL_GLOBAL_ALL);
-    CURL *curl = curl_easy_init();
     log.open("retro-manager.log", std::ios::out | std::ios::trunc );
     
     
@@ -98,21 +95,6 @@ catch (const std::exception& e)
     std::cerr << "Request failed, error: " << e.what() << '\n';
 }
 	
-}
-
-void _downloadFile(const std::string& fileName, const std::string& url, CURL* curl) {
-    log <<  "Start download" << std::endl;
-    FILE* file;
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeData);
-    curl_easy_setopt(curl, CURLOPT_URL, url);
-	curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-	curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0L);
-    file = fopen(fileName.c_str(), "wb");
-    if(file) {
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
-        curl_easy_perform(curl);
-        fclose(file);
-    }   
 }
 
 inline bool isFileExists (const std::string& name) {
