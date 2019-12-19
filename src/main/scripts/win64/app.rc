@@ -17,7 +17,7 @@ BEGIN
             VALUE "FileDescription",  "Play50hz server launcher"
             VALUE "FileVersion",      "1,0,0,0"
             VALUE "InternalName",     "retro-installer"
-            VALUE "LegalCopyright",   "Copyright (c) 2019 Gregory Van den Borre
+            VALUE "LegalCopyright",   "Copyright (c) 2019 Gregory Van den Borre"
             VALUE "OriginalFilename", "Play50hz-server.exe"
             VALUE "ProductName",      "Play 50 hz server"
             VALUE "ProductVersion",   "1,0,0,0"
