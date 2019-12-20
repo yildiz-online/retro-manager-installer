@@ -54,7 +54,7 @@ int main () {
 	}
     }
     log << "Downloading last version of the application..." << std::endl;
-    downloadFile("play50hz.jar", "http://play50hz-data.yildiz-games.be/launcher.jar");  
+    downloadFile("play50hz-server.jar", "http://play50hz-data.yildiz-games.be/launcher.jar");  
     log << "Download last version of the launcher complete." << std::endl;
     log <<  "Starting play50hz..." << std::endl;
     runApp();
@@ -70,7 +70,7 @@ std::string workingdir()
 }
 
 void runApp() {
-    std::string cmd = "\"" + workingdir() +  "/java/bin/java.exe" + "\"" + " -jar play50hz.jar";
+    std::string cmd = "\"" + workingdir() +  "/java/bin/java.exe" + "\"" + " -jar play50hz-server.jar";
     system(cmd.c_str());
 }
 
