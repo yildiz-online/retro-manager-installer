@@ -1,4 +1,7 @@
-#include <winsock2.h>
+#ifdef __linux__ 
+    #include <arpa/inet.h>
+#elif _WIN32
+    #include <winsock2.h>
 #include <iostream>
 #include <fstream>
 #include <string>
