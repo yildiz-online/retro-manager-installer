@@ -2,6 +2,7 @@
     #include <arpa/inet.h>
 #elif _WIN32
     #include <winsock2.h>
+#endif
 #include <iostream>
 #include <fstream>
 #include <string>
