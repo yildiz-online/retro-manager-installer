@@ -23,6 +23,8 @@ int compareFiles(const std::string& file1, const std::string file2);
 
 void runApp();
 
+void fail(const char *f, const char *m, int r);
+
 static void	extract(const char *filename, int do_extract, int flags);
 
 static int	copy_data(struct archive *, struct archive *);
@@ -205,6 +207,13 @@ copy_data(struct archive *ar, struct archive *aw)
 			return (r);
 		}
 	}
+}
+
+void fail(const char *f, const char *m, int r)
+{
+	log << f << ":" << m << std::endl;
+        std::cout << f << ":" << m << std::endl;
+	exit(r);
 }
 
 int compareFiles(const std::string& file1, const std::string file2) {
