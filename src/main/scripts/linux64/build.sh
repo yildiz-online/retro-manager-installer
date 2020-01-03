@@ -8,6 +8,6 @@ make
 r1=$?
 
 mkdir -p ../../../../target/classes/linux64/
-cp Play50hz-server.bin ../../../../target/classes/linux64/Play50hz-server.bin
+cp Play50hz-server ../../../../target/classes/linux64/Play50hz-server
 
 exit ${r1}
