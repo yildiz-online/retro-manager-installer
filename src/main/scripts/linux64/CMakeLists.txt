@@ -5,7 +5,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DCURL_STATICLIB -static-libstdc++ -static-l
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DCURL_STATICLIB -static-libstdc++ -static-libgcc -std=c++0x")
 
 set(CMAKE_CXX_STANDARD_LIBRARIES "${CMAKE_CXX_STANDARD_LIBRARIES} -static-libgcc -static-libstdc++")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,--no-whole-archive") 
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Bstatic,--whole-archive -Wl,--no-whole-archive") 
 
 include_directories("${CMAKE_SOURCE_DIR}/libarchive/linux64/include")
 
@@ -23,6 +23,3 @@ add_executable(Play50hz-server ../../c++/main.cpp)
 
 target_link_libraries(Play50hz-server ${CMAKE_SOURCE_DIR}/libarchive/linux64/lib/libarchive.a)
 target_link_libraries(Play50hz-server ${CMAKE_SOURCE_DIR}/zlib/linux64/lib/libz.a)
-target_link_libraries(Play50hz-server wsock32)
-target_link_libraries(Play50hz-server ws2_32)
-target_link_libraries(Play50hz-server pthread)
