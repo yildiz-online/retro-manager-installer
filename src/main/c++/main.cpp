@@ -24,13 +24,8 @@ int compareFiles(const std::string& file1, const std::string file2);
 void runApp();
 
 static void	extract(const char *filename, int do_extract, int flags);
-static void	fail(const char *, const char *, int);
+
 static int	copy_data(struct archive *, struct archive *);
-
-static void	usage(void);
-static void	warn(const char *, const char *);
-
-static int verbose = 0;
 
 int main () {
     log.open("retro-manager.log", std::ios::out | std::ios::trunc );
