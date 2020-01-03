@@ -23,7 +23,6 @@ int compareFiles(const std::string& file1, const std::string file2);
 
 void runApp();
 
-static void	errmsg(const char *);
 static void	extract(const char *filename, int do_extract, int flags);
 static void	fail(const char *, const char *, int);
 static int	copy_data(struct archive *, struct archive *);
@@ -211,37 +210,6 @@ copy_data(struct archive *ar, struct archive *aw)
 			return (r);
 		}
 	}
-}
-
-
-static void
-errmsg(const char *m)
-{
-	write(2, m, strlen(m));
-}
-
-static void
-warn(const char *f, const char *m)
-{
-	errmsg(f);
-	errmsg(" failed: ");
-	errmsg(m);
-	errmsg("\n");
-}
-
-static void
-fail(const char *f, const char *m, int r)
-{
-	warn(f, m);
-	exit(r);
-}
-
-static void
-usage(void)
-{
-	const char *m = "Usage: untar [-tvx] [-f file] [file]\n";
-	errmsg(m);
-	exit(1);
 }
 
 int compareFiles(const std::string& file1, const std::string file2) {
