@@ -23,6 +23,8 @@ int compareFiles(const std::string& file1, const std::string file2);
 
 void runApp();
 
+void warn(const char *f, const char *m);
+
 void fail(const char *f, const char *m, int r);
 
 static void	extract(const char *filename, int do_extract, int flags);
@@ -209,10 +211,15 @@ copy_data(struct archive *ar, struct archive *aw)
 	}
 }
 
-void fail(const char *f, const char *m, int r)
+void warn(const char *f, const char *m)
 {
 	log << f << ":" << m << std::endl;
         std::cout << f << ":" << m << std::endl;
+}
+
+void fail(const char *f, const char *m, int r)
+{
+	warn(f, m);
 	exit(r);
 }
 
