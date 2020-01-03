@@ -1,5 +1,6 @@
 #ifdef __linux__ 
     #include <arpa/inet.h>
+    #include <unistd.h>
 #elif _WIN32
     #include <winsock2.h>
 #endif
@@ -80,12 +81,19 @@ int main () {
     return 0;
 }
 
-std::string workingdir()
-{
-    char buf[MAX_PATH];
-    GetCurrentDirectoryA(MAX_PATH, buf);
-    return std::string(buf);
-}
+#ifdef __linux__ 
+    std::string workingdir() {
+        return get_current_dir_name();
+    }
+#elif _WIN32
+    std::string workingdir() {
+        char buf[MAX_PATH];
+        GetCurrentDirectoryA(MAX_PATH, buf);
+        return std::string(buf);
+    }
+#endif
+
+
 
 void runApp() {
     std::string cmd = "\"" + workingdir() +  "/java/bin/java.exe" + "\"" + " -jar play50hz-server.jar";
