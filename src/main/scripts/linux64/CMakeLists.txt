@@ -22,7 +22,7 @@ add_executable(Play50hz-server ../../c++/main.cpp)
 
 
 target_link_libraries(Play50hz-server ${CMAKE_SOURCE_DIR}/libarchive/linux64/lib/libarchive.a)
-target_link_libraries(Play50hz-server ${CMAKE_SOURCE_DIR}/zlib/linux64/lib/libzlibstatic.a)
+target_link_libraries(Play50hz-server ${CMAKE_SOURCE_DIR}/zlib/linux64/lib/libz.a)
 target_link_libraries(Play50hz-server wsock32)
 target_link_libraries(Play50hz-server ws2_32)
 target_link_libraries(Play50hz-server pthread)
