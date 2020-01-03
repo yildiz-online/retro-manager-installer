@@ -86,20 +86,24 @@ int main () {
     std::string workingdir() {
         return get_current_dir_name();
     }
+
+    void runApp() {
+        std::string cmd = "\"" + workingdir() +  "/java/bin/java" + "\"" + " -jar play50hz-server.jar";
+        system(cmd.c_str());
+    } 
 #elif _WIN32
     std::string workingdir() {
         char buf[MAX_PATH];
         GetCurrentDirectoryA(MAX_PATH, buf);
         return std::string(buf);
     }
+
+    void runApp() {
+        std::string cmd = "\"" + workingdir() +  "/java/bin/java.exe" + "\"" + " -jar play50hz-server.jar";
+        system(cmd.c_str());
+    }
 #endif
 
-
-
-void runApp() {
-    std::string cmd = "\"" + workingdir() +  "/java/bin/java.exe" + "\"" + " -jar play50hz-server.jar";
-    system(cmd.c_str());
-}
 
 static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
 {
