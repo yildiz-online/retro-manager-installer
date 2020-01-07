@@ -42,7 +42,12 @@ int main () {
     if(!isFileExists("java/bin/java.exe")) {
         log << "Java not found, dowloading it..." << std::endl;
         std::cout << "Java not found, dowloading it..." << std::endl;
-        downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_win64.tar.gz");
+	
+#ifdef __linux__ 
+    downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_linux64.tar.gz");
+#elif _WIN32
+    downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_win64.tar.gz");
+#endif
         log << "Java download complete." << std::endl;
         std::cout << "Java download complete." << std::endl;
         log << "Unpacking java.tar.gz..." << std::endl;
@@ -53,11 +58,19 @@ int main () {
     } else {
         log << "Java found, checking version..." << std::endl;
 	std::cout << "Java found, checking version..." << std::endl;
-        downloadFile("expected-release", "http://files.yildiz-games.be/release");  
+#ifdef __linux__ 
+    downloadFile("expected-release", "http://files.yildiz-games.be/release_linux64");  
+#elif _WIN32
+    downloadFile("expected-release", "http://files.yildiz-games.be/release");  
+#endif
         if(!compareFiles("java/release", "expected-release")) {
 	    log << "Java version not matching, downloading the correct one..." << std::endl;
             std::cout << "Java version not matching, downloading the correct one..." << std::endl;
-            downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_win64.tar.gz");
+#ifdef __linux__ 
+    downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_linux64.tar.gz");
+#elif _WIN32
+    downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_win64.tar.gz");
+#endif
             log << "Java download complete." << std::endl;
 	    std::cout << "Java download complete." << std::endl;
             log << "Unpacking java.tar.gz..." << std::endl;
