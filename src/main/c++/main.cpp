@@ -39,14 +39,16 @@ int main () {
     
     log << "Checking java availability" << std::endl;
     std::cout << "Checking java availability" << std::endl;
+#ifdef __linux__ 
+    if(!isFileExists("java/bin/java")) {
+        log << "Java not found, dowloading it..." << std::endl;
+        std::cout << "Java not found, dowloading it..." << std::endl;
+        downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_linux64.tar.gz");
+#elif _WIN32
     if(!isFileExists("java/bin/java.exe")) {
         log << "Java not found, dowloading it..." << std::endl;
         std::cout << "Java not found, dowloading it..." << std::endl;
-	
-#ifdef __linux__ 
-    downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_linux64.tar.gz");
-#elif _WIN32
-    downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_win64.tar.gz");
+        downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_win64.tar.gz");
 #endif
         log << "Java download complete." << std::endl;
         std::cout << "Java download complete." << std::endl;
