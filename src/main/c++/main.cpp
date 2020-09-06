@@ -23,6 +23,8 @@ int compareFiles(const std::string& file1, const std::string file2);
 
 void runApp();
 
+void(print(const std::string& message);
+
 void warn(const char *f, const char *m);
 
 void fail(const char *f, const char *m, int r);
@@ -35,63 +37,46 @@ static int verbose = 0;
 
 int main () {
     log.open("retro-manager.log", std::ios::out | std::ios::trunc );
-    
-    
-    log << "Checking java availability" << std::endl;
-    std::cout << "Checking java availability" << std::endl;
+    print("Checking java availability");
 #ifdef __linux__ 
     if(!isFileExists("java/bin/java")) {
-        log << "Java not found, downloading it..." << std::endl;
-        std::cout << "Java not found, downloading it..." << std::endl;
+        print("Play50hz java not found, starting download...");
         downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_linux64.tar.gz");
 #elif _WIN32
     if(!isFileExists("java/bin/java.exe")) {
-        log << "Java not found, downloading it..." << std::endl;
-        std::cout << "Java not found, downloading it..." << std::endl;
+        print("Play50hz java not found, starting download...");
         downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_win64.tar.gz");
 #endif
-        log << "Java download complete." << std::endl;
-        std::cout << "Java download complete." << std::endl;
-        log << "Unpacking java.tar.gz..." << std::endl;
-	std::cout << "Unpacking java.tar.gz..." << std::endl;
+        print("Java download complete.");
+        print("Unpacking java.tar.gz...");
         extract( "java.tar.gz", 1, 0);
-        log << "Unpack java.tar.gz complete." << std::endl;
-	std::cout << "Unpack java.tar.gz complete." << std::endl;
+        print("Unpack java.tar.gz complete.");
     } else {
-        log << "Java found, checking version..." << std::endl;
-	std::cout << "Java found, checking version..." << std::endl;
+        print("Java found, checking version...");
 #ifdef __linux__ 
     downloadFile("expected-release", "http://files.yildiz-games.be/release_linux64");  
 #elif _WIN32
     downloadFile("expected-release", "http://files.yildiz-games.be/release");  
 #endif
         if(!compareFiles("java/release", "expected-release")) {
-	    log << "Java version not matching, downloading the correct one..." << std::endl;
-            std::cout << "Java version not matching, downloading the correct one..." << std::endl;
+	    print("Java version not matching, downloading the correct one...");
 #ifdef __linux__ 
     downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_linux64.tar.gz");
 #elif _WIN32
     downloadFile("java.tar.gz", "http://files.yildiz-games.be/java_jre_win64.tar.gz");
 #endif
-            log << "Java download complete." << std::endl;
-	    std::cout << "Java download complete." << std::endl;
-            log << "Unpacking java.tar.gz..." << std::endl;
-	    std::cout << "Unpacking java.tar.gz..." << std::endl;
+            print("Java download complete.");
+            print("Unpacking java.tar.gz...");
             extract( "java.tar.gz", 1, 0);
-            log << "Unpack java.tar.gz complete." << std::endl;
-	    std::cout << "Unpack java.tar.gz complete." << std::endl;
+            print("Unpack java.tar.gz complete.");
         } else { 
-	    log << "Java version is correct." << std::endl;
-	    std::cout << "Java version is correct." << std::endl;
+	    print("Java version is correct.");
 	}
     }
-    log << "Downloading latest version of the application..." << std::endl;
-    std::cout << "Downloading latest version of the application..." << std::endl;
+    print("Downloading latest version of the application...");
     downloadFile("play50hz-server.jar", "http://play50hz-data.yildiz-games.be/launcher.jar");  
-    log << "Download latest version of the launcher complete." << std::endl;
-    std::cout << "Download latest version of the launcher complete." << std::endl;
-    log <<  "Starting Play50hz manager..." << std::endl;
-    std::cout <<  "Starting Play50hz manager..." << std::endl;
+    print(Download latest version of the launcher complete.");
+    print("Starting Play50hz manager...");
     runApp();
     
     return 0;
@@ -127,19 +112,20 @@ static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
 }
 
 void downloadFile(const std::string& fileName, const std::string& url) {
-try
-{
-    http::Request request(url);
-
-    const http::Response response = request.send("GET");
-    std::ofstream outfile(fileName, std::ofstream::binary);
-    outfile.write(reinterpret_cast<const char*>(response.body.data()), static_cast<std::streamsize>(response.body.size()));
-}
-catch (const std::exception& e)
-{
-    std::cerr << "Request failed, error: " << e.what() << '\n';
+    print("This can take some time, please wait...");
+    try {
+        http::Request request(url);
+        const http::Response response = request.send("GET");
+        std::ofstream outfile(fileName, std::ofstream::binary);
+        outfile.write(reinterpret_cast<const char*>(response.body.data()), static_cast<std::streamsize>(response.body.size()));
+    } catch (const std::exception& e) {
+        std::cerr << "Request failed, error: " << e.what() << '\n';
+    }	
 }
 	
+void print(const std::string& message) {
+    log << message << std::endl;
+    std::cout << message << std::endl;	
 }
 
 inline bool isFileExists (const std::string& name) {
