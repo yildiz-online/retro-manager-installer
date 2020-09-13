@@ -427,17 +427,13 @@ namespace http
 #endif
 
             // send the request
-            while (remaining > 0)
-            {
+            while (remaining > 0) {
                 const auto size = ::send(socket, requestData.data() + sent, static_cast<size_t>(remaining), flags);
-
                 if (size < 0)
                     throw std::system_error(getLastError(), std::system_category(), "Failed to send data to " + domain + ":" + port);
-
                 remaining -= size;
                 sent += size;
             }
-
             uint8_t tempBuffer[4096];
             constexpr uint8_t crlf[] = {'\r', '\n'};
             std::vector<uint8_t> responseData;
@@ -461,10 +457,8 @@ namespace http
 
                 responseData.insert(responseData.end(), tempBuffer, tempBuffer + size);
 
-                if (!parsedHeaders)
-                {
-                    for (;;)
-                    {
+                if (!parsedHeaders) {
+                    for (;;) {
                         const auto i = std::search(responseData.begin(), responseData.end(), std::begin(crlf), std::end(crlf));
 
                         // didn't find a newline
@@ -474,13 +468,10 @@ namespace http
                         responseData.erase(responseData.begin(), i + 2);
 
                         // empty line indicates the end of the header section
-                        if (line.empty())
-                        {
+                        if (line.empty()) {
                             parsedHeaders = true;
                             break;
-                        }
-                        else if (firstLine) // first line
-                        {
+                        } else if (firstLine) {
                             firstLine = false;
 
                             std::string::size_type lastPos = 0;
@@ -488,29 +479,24 @@ namespace http
                             std::vector<std::string> parts;
 
                             // tokenize first line
-                            while (lastPos < length + 1)
-                            {
+                            while (lastPos < length + 1) {
                                 auto pos = line.find(' ', lastPos);
                                 if (pos == std::string::npos) pos = length;
-
                                 if (pos != lastPos)
                                     parts.emplace_back(line.data() + lastPos,
                                                        static_cast<std::vector<std::string>::size_type>(pos) - lastPos);
-
                                 lastPos = pos + 1;
                             }
 
                             if (parts.size() >= 2)
                                 response.status = std::stoi(parts[1]);
-                        }
-                        else // headers
+                        } else // headers
                         {
                             response.headers.push_back(line);
 
                             const auto pos = line.find(':');
 
-                            if (pos != std::string::npos)
-                            {
+                            if (pos != std::string::npos) {
                                 std::string headerName = line.substr(0, pos);
                                 std::string headerValue = line.substr(pos + 1);
 
@@ -596,10 +582,13 @@ namespace http
                     {
                         response.body.insert(response.body.end(), responseData.begin(), responseData.end());
                         responseData.clear();
+			    std::cout << "\r" <<"Download progress: " << response.body.size() << " on " << contentLength << " (" << (int)(((float)response.body.size() / (float)contentLength) * 100) << "%)";
 
                         // got the whole content
-                        if (contentLengthReceived && response.body.size() >= contentLength)
+                        if (contentLengthReceived && response.body.size() >= contentLength) {
+			    std::cout << std::endl;
                             break;
+			}
                     }
                 }
             }
